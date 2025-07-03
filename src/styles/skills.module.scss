@@ -1,0 +1,228 @@
+.skills {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 2rem;
+	color: white;
+	text-shadow:
+		-1px -1px 0 rgba(0, 0, 0, 0.3),
+		1px -1px 0 rgba(0, 0, 0, 0.3),
+		-1px 1px 0 rgba(0, 0, 0, 0.3),
+		1px 1px 0 rgba(0, 0, 0, 0.3);
+
+	@media (min-width: 768px) {
+		padding: 4rem;
+	}
+
+	@media (min-width: 1024px) {
+		padding: 6rem;
+	}
+}
+
+.container {
+	max-width: 56rem;
+	width: 100%;
+}
+
+// Animations
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.heading {
+	font-family: "LionandHareLight", sans-serif;
+	text-transform: uppercase;
+	font-size: clamp(3.75rem, 10vw, 10rem);
+	margin-bottom: 2rem;
+	animation: fadeInUp 0.8s ease-out;
+
+	@media (min-width: 768px) {
+		margin-bottom: 3rem;
+	}
+}
+
+.content {
+	font-family: "Rajdhani-Medium", sans-serif;
+	font-size: 1rem;
+	line-height: 1.75;
+	letter-spacing: 0.05em;
+	animation: fadeInUp 0.8s ease-out 0.2s both;
+	margin-bottom: 3rem;
+
+	@media (min-width: 640px) {
+		font-size: 1.125rem;
+		margin-bottom: 4rem;
+	}
+
+	@media (min-width: 768px) {
+		font-size: 1.25rem;
+		margin-bottom: 5rem;
+	}
+}
+
+.paragraph {
+	margin-bottom: 1rem;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+// Technology Showcase
+.techShowcase {
+	animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.techTitle {
+	font-family: "Rajdhani-Medium", sans-serif;
+	font-size: 1.125rem;
+	letter-spacing: 0.05em;
+	margin-bottom: 1.5rem;
+	opacity: 0.9;
+	text-transform: uppercase;
+
+	@media (min-width: 640px) {
+		font-size: 1.25rem;
+		margin-bottom: 2rem;
+	}
+}
+
+.techGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+	gap: 1.5rem;
+	max-width: 32rem;
+
+	@media (min-width: 640px) {
+		grid-template-columns: repeat(6, 1fr);
+		gap: 2rem;
+		max-width: 36rem;
+	}
+
+	@media (min-width: 768px) {
+		gap: 2.5rem;
+		max-width: 42rem;
+	}
+}
+
+.techItem {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.75rem;
+	opacity: 0;
+	animation: slideInLeft 0.6s ease-out forwards;
+
+	// Stagger the animations
+	&:nth-child(1) {
+		animation-delay: 0.5s;
+	}
+
+	&:nth-child(2) {
+		animation-delay: 0.6s;
+	}
+
+	&:nth-child(3) {
+		animation-delay: 0.7s;
+	}
+
+	&:nth-child(4) {
+		animation-delay: 0.8s;
+	}
+
+	&:nth-child(5) {
+		animation-delay: 0.9s;
+	}
+
+	&:nth-child(6) {
+		animation-delay: 1s;
+	}
+
+	@media (min-width: 640px) {
+		gap: 1rem;
+	}
+}
+
+.techIconWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 0.5rem;
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	transition: all 0.3s ease;
+
+	@media (min-width: 640px) {
+		width: 3.5rem;
+		height: 3.5rem;
+	}
+
+	@media (min-width: 768px) {
+		width: 4rem;
+		height: 4rem;
+	}
+
+	// Subtle hover effect that doesn't make it look clickable
+	&:hover {
+		background: rgba(255, 255, 255, 0.08);
+		border-color: rgba(255, 255, 255, 0.2);
+		transform: translateY(-1px);
+	}
+}
+
+.techIcon {
+	width: 1.5rem;
+	height: 1.5rem;
+	color: white;
+
+	@media (min-width: 640px) {
+		width: 1.75rem;
+		height: 1.75rem;
+	}
+
+	@media (min-width: 768px) {
+		width: 2rem;
+		height: 2rem;
+	}
+}
+
+.techName {
+	font-family: "Rajdhani-Medium", sans-serif;
+	font-size: 0.875rem;
+	letter-spacing: 0.025em;
+	opacity: 0.9;
+	text-align: center;
+
+	@media (min-width: 640px) {
+		font-size: 1rem;
+	}
+
+	// Hide on very small screens to save space
+	@media (max-width: 479px) {
+		display: none;
+	}
+}

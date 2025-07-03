@@ -1,0 +1,268 @@
+.contact {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100%;
+	padding: 2rem;
+	color: white;
+	text-shadow:
+		-1px -1px 0 rgba(0, 0, 0, 0.3),
+		1px -1px 0 rgba(0, 0, 0, 0.3),
+		-1px 1px 0 rgba(0, 0, 0, 0.3),
+		1px 1px 0 rgba(0, 0, 0, 0.3);
+
+	@media (max-height: 600px) and (orientation: landscape) {
+		padding: 1rem;
+		min-height: auto;
+	}
+}
+
+.container {
+	width: 100%;
+	max-width: 45rem;
+	margin: 0 auto;
+}
+
+// Animations
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: scaleX(0);
+	}
+
+	to {
+		opacity: 1;
+		transform: scaleX(1);
+	}
+}
+
+.heading {
+	font-family: "LionandHareLight", sans-serif;
+	text-transform: uppercase;
+	font-size: clamp(5rem, 10vw, 14rem);
+	text-align: center;
+	margin-bottom: 2rem;
+	animation: fadeInUp 0.6s ease-out;
+
+	@media (max-height: 600px) and (orientation: landscape) {
+		font-size: clamp(4rem, 8vw, 8rem);
+		margin-bottom: 1rem;
+	}
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	animation: fadeInUp 0.6s ease-out 0.2s both;
+
+	@media (max-height: 600px) and (orientation: landscape) {
+		gap: 0.75rem;
+	}
+}
+
+.formGroup {
+	position: relative;
+}
+
+.input {
+	width: 100%;
+	padding: 0.75rem 0;
+	font-family: "Rajdhani-Medium", sans-serif;
+	font-size: clamp(1.2rem, 1vw, 2rem);
+	color: #d3d3d3;
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+	outline: none;
+	transition: all 0.3s ease;
+	transform-origin: left;
+	animation: slideIn 0.4s ease-out both;
+
+	&::placeholder {
+		color: rgba(255, 255, 255, 0.4);
+		transition: color 0.3s ease;
+	}
+
+	&:focus {
+		border-bottom-color: white;
+		border-bottom-width: 2px;
+
+		&::placeholder {
+			color: rgba(255, 255, 255, 0.6);
+		}
+	}
+
+	&.error {
+		border-bottom-color: #ff4444;
+		animation: shake 0.3s ease-out;
+	}
+
+	// Stagger animation for each input
+	@for $i from 1 through 4 {
+		&:nth-child(#{$i}) {
+			animation-delay: #{$i * 0.1}s;
+		}
+	}
+
+	@media (max-height: 600px) and (orientation: landscape) {
+		padding: 0.5rem 0;
+		font-size: 1.2rem;
+	}
+}
+
+.textarea {
+	resize: none;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	border-radius: 4px;
+	padding: 1rem;
+	min-height: 150px;
+
+	&:focus {
+		border-color: white;
+		border-width: 2px;
+	}
+
+	&.error {
+		border-color: #ff4444;
+	}
+
+	@media (max-height: 600px) and (orientation: landscape) {
+		min-height: 100px;
+		padding: 0.75rem;
+	}
+}
+
+.errorMessage {
+	position: absolute;
+	bottom: -1.5rem;
+	left: 0;
+	font-family: "Rajdhani-Medium", sans-serif;
+	font-size: 0.875rem;
+	color: #ff4444;
+	animation: fadeInUp 0.2s ease-out;
+}
+
+.submitButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	width: 100%;
+	max-width: 200px;
+	height: 3.5rem;
+	margin: 2rem auto 0;
+	padding: 0 2rem;
+	font-family: "Rajdhani-Medium", sans-serif;
+	font-size: clamp(1.2rem, 1.5vw, 2rem);
+	letter-spacing: 0.1em;
+	color: white;
+	background: transparent;
+	border: 1px solid white;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	animation: fadeInUp 0.4s ease-out 0.5s both;
+
+	&:hover:not(:disabled) {
+		background: white;
+		color: black;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+
+		.arrow {
+			transform: translateX(4px);
+		}
+	}
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+
+	@media (max-height: 600px) and (orientation: landscape) {
+		height: 2.5rem;
+		margin-top: 1rem;
+		font-size: 1.2rem;
+	}
+}
+
+.arrow {
+	display: inline-block;
+	transition: transform 0.3s ease;
+}
+
+// Status screens (success/error)
+.statusContainer {
+	text-align: center;
+	animation: fadeInUp 0.6s ease-out;
+}
+
+.statusHeading {
+	font-family: "LionandHareLight", sans-serif;
+	text-transform: uppercase;
+	font-size: clamp(4rem, 10vw, 10rem);
+	margin-bottom: 2rem;
+}
+
+.statusText {
+	font-family: "Rajdhani-Medium", sans-serif;
+	font-size: clamp(1.5rem, 2vw, 2rem);
+	margin-bottom: 1rem;
+	opacity: 0.9;
+}
+
+.backButton {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 3rem;
+	padding: 0.75rem 2rem;
+	font-family: "Rajdhani-Medium", sans-serif;
+	font-size: clamp(1.2rem, 1.5vw, 2rem);
+	color: white;
+	background: transparent;
+	border: 1px solid white;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+
+	&:hover {
+		background: white;
+		color: black;
+		transform: translateY(-2px);
+
+		.arrow {
+			transform: translateX(-4px);
+		}
+	}
+}
+
+// Animation for errors
+@keyframes shake {
+
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+
+	25% {
+		transform: translateX(-5px);
+	}
+
+	75% {
+		transform: translateX(5px);
+	}
+}

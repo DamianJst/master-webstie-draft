@@ -1,0 +1,228 @@
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    color: white;
+    text-shadow:
+        -1px -1px 0 rgba(0, 0, 0, 0.3),
+        1px -1px 0 rgba(0, 0, 0, 0.3),
+        -1px 1px 0 rgba(0, 0, 0, 0.3),
+        1px 1px 0 rgba(0, 0, 0, 0.3);
+
+    @media (min-width: 768px) {
+        padding: 4rem;
+    }
+
+    @media (min-width: 1024px) {
+        padding: 6rem;
+    }
+}
+
+.container {
+    max-width: 48rem;
+    width: 100%;
+}
+
+// Animations
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.heading {
+    font-family: "LionandHareLight", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(3.75rem, 10vw, 10rem);
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease-out;
+
+    @media (min-width: 768px) {
+        margin-bottom: 3rem;
+    }
+}
+
+.content {
+    font-family: "Rajdhani-Medium", sans-serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    letter-spacing: 0.05em;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+
+    @media (min-width: 640px) {
+        font-size: 1.125rem;
+    }
+
+    @media (min-width: 768px) {
+        font-size: 1.25rem;
+    }
+}
+
+.paragraph {
+    margin-bottom: 1rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// Read more container
+.readMoreContainer {
+
+    // Desktop: content is always visible, no button needed
+    @media (min-width: 640px) {
+        .expandableContent {
+            max-height: none !important;
+            opacity: 1 !important;
+            overflow: visible !important;
+        }
+
+        .readMoreButton {
+            display: none;
+        }
+    }
+
+    // Mobile: Add slight delay to button animation
+    @media (max-width: 639px) {
+        .readMoreButton {
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+    }
+}
+
+// Expandable content - SEO friendly
+.expandableContent {
+
+    // Mobile: Content starts collapsed but is in DOM for SEO
+    @media (max-width: 639px) {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+
+        &.expanded {
+            max-height: 500px; // Adjust based on your content
+            opacity: 1;
+        }
+    }
+}
+
+// Read more button - only visible on mobile
+.readMoreButton {
+    font-family: "Rajdhani-Medium", sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    position: relative;
+    transition: opacity 0.2s ease;
+
+    // Underline effect
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0.4rem;
+        left: 0;
+        right: 2rem; // Don't underline the chevron
+        height: 1px;
+        background-color: white;
+        transform-origin: left;
+        transition: transform 0.2s ease;
+    }
+
+    &:hover {
+        opacity: 0.8;
+
+        &::after {
+            transform: scaleX(1.05);
+        }
+    }
+
+    &:focus {
+        outline: 2px solid white;
+        outline-offset: 2px;
+    }
+
+    // Hide on desktop
+    @media (min-width: 640px) {
+        display: none;
+    }
+}
+
+.chevron {
+    display: inline-block;
+    transition: transform 0.2s ease;
+
+    &.expanded {
+        transform: rotate(180deg);
+    }
+}
+
+.socialLinks {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+
+    @media (min-width: 768px) {
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+}
+
+.socialLink {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 0.25rem;
+    transition: all 0.2s ease;
+    color: rgba(255, 255, 255, 0.9);
+
+    &:hover {
+        border-bottom-color: white;
+        color: white;
+
+        .socialIcon {
+            opacity: 1;
+        }
+    }
+}
+
+.socialText {
+    display: none;
+    font-family: "Rajdhani-Medium", sans-serif;
+    font-size: 1.125rem;
+    letter-spacing: 0.05em;
+
+    @media (min-width: 640px) {
+        display: inline;
+    }
+}
+
+.socialIcon {
+    width: 1.75rem;
+    height: 1.75rem;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+
+    @media (min-width: 640px) {
+        width: 2rem;
+        height: 2rem;
+    }
+}

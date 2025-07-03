@@ -1,0 +1,183 @@
+// src/styles/mixins.scss
+// Modern responsive design mixins
+
+// Breakpoints
+$breakpoints: (
+    'phone': 480px,
+    'phone-l': 600px,
+    'tablet': 768px,
+    'tablet-l': 1024px,
+    'desktop': 1200px,
+    'desktop-l': 1440px,
+    'desktop-xl': 1920px
+);
+
+// Media query mixin
+@mixin respond($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (max-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+
+    @else {
+        @warn "No breakpoint found for `#{$breakpoint}`.";
+    }
+}
+
+// Min-width media query
+@mixin respond-min($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+}
+
+// Range media query
+@mixin respond-between($min, $max) {
+    @if map-has-key($breakpoints, $min) and map-has-key($breakpoints, $max) {
+        @media (min-width: map-get($breakpoints, $min)) and (max-width: map-get($breakpoints, $max)) {
+            @content;
+        }
+    }
+}
+
+// Orientation queries
+@mixin landscape {
+    @media (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin portrait {
+    @media (orientation: portrait) {
+        @content;
+    }
+}
+
+// High DPI screens
+@mixin retina {
+
+    @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi) {
+        @content;
+    }
+}
+
+// Container query mixin (modern CSS)
+@mixin container($size) {
+    @container (min-width: #{$size}) {
+        @content;
+    }
+}
+
+// Hover states (only on devices that support hover)
+@mixin hover-supported {
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            @content;
+        }
+    }
+}
+
+// Dark mode
+@mixin dark-mode {
+    @media (prefers-color-scheme: dark) {
+        @content;
+    }
+}
+
+// Light mode
+@mixin light-mode {
+    @media (prefers-color-scheme: light) {
+        @content;
+    }
+}
+
+// Reduced motion
+@mixin reduced-motion {
+    @media (prefers-reduced-motion: reduce) {
+        @content;
+    }
+}
+
+// High contrast
+@mixin high-contrast {
+    @media (prefers-contrast: high) {
+        @content;
+    }
+}
+
+// Utility functions
+@function rem($pixels, $base: 16) {
+    @return #{$pixels / $base}rem;
+}
+
+@function em($pixels, $base: 16) {
+    @return #{$pixels / $base}em;
+}
+
+// Z-index management
+$z-layers: (
+    'base': 0,
+    'dropdown': 10,
+    'sticky': 20,
+    'fixed': 30,
+    'modal-backdrop': 40,
+    'modal': 50,
+    'popover': 60,
+    'tooltip': 70,
+);
+
+@function z($layer) {
+    @if map-has-key($z-layers, $layer) {
+        @return map-get($z-layers, $layer);
+    }
+
+    @warn "No z-index found for layer `#{$layer}`.";
+    @return 0;
+}
+
+// Aspect ratio mixin
+@mixin aspect-ratio($width, $height) {
+    aspect-ratio: #{$width} / #{$height};
+
+    // Fallback for older browsers
+    @supports not (aspect-ratio: 1 / 1) {
+        &::before {
+            content: '';
+            display: block;
+            padding-top: percentage($height / $width);
+        }
+    }
+}
+
+// Truncate text
+@mixin truncate($lines: 1) {
+    @if $lines ==1 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    @else {
+        display: -webkit-box;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+// Visually hidden but accessible
+@mixin visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

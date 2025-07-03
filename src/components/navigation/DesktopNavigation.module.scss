@@ -1,0 +1,92 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 2rem;
+    pointer-events: none; // Allow clicks to pass through, we'll enable only on interactive elements
+
+    @media (max-width: 768px) {
+        display: none; // Hide on mobile, use mobile navigation instead
+    }
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logoContainer {
+    pointer-events: auto; // Enable clicks
+    cursor: pointer;
+    width: 8rem;
+    mix-blend-mode: difference;
+
+    @media (max-width: 1200px) {
+        width: 6rem;
+    }
+}
+
+.logo {
+    width: 100%;
+    height: auto;
+    fill: white;
+}
+
+.navElements {
+    pointer-events: auto; // Enable clicks
+
+    ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        gap: 2.5rem;
+
+        @media (max-width: 1200px) {
+            gap: 1.5rem;
+        }
+    }
+
+    li {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.navButton {
+    position: relative;
+    font-family: 'Suissnord', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    mix-blend-mode: difference;
+
+    @media (max-width: 1200px) {
+        font-size: 1.25rem;
+    }
+
+    &.active {
+        .sectionName {
+            opacity: 1;
+        }
+    }
+}
+
+.sectionName {
+    position: relative;
+    display: block;
+}
+
+.underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transform-origin: left; }

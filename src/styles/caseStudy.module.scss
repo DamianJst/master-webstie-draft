@@ -1,0 +1,334 @@
+// src/styles/caseStudy.module.scss
+@import './mixins';
+
+.caseStudy {
+	position: relative;
+	min-height: 100vh;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 1fr auto;
+	color: white;
+	background: black;
+	padding: 2rem;
+
+	@include respond-min(tablet) {
+		padding: 4rem;
+	}
+}
+
+// Back Button
+.backButton {
+	grid-row: 1;
+	justify-self: start;
+	margin-bottom: 2rem;
+	text-decoration: none;
+
+	.backBtnContent {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.75rem 1.5rem;
+
+		background: transparent;
+		border: 1px solid #fff;
+		border-radius: 2.5px;
+		color: white;
+
+		font-family: "Rajdhani-Medium", sans-serif;
+		font-size: 1.25rem;
+		letter-spacing: 0.1rem;
+
+		transition: all 0.2s ease;
+		cursor: pointer;
+
+		&:hover {
+			background: white;
+			color: black;
+
+			.text {
+				font-family: "Rajdhani-Bold", sans-serif;
+			}
+
+			.arrowLeft {
+				border-right-color: black;
+			}
+		}
+	}
+
+	.arrowLeft {
+		width: 0;
+		height: 0;
+		border-top: 7px solid transparent;
+		border-bottom: 7px solid transparent;
+		border-right: 8.5px solid white;
+		transition: border-color 0.2s ease;
+	}
+
+	@include respond(phone) {
+		.backBtnContent {
+			padding: 0.5rem 1rem;
+			font-size: 1rem;
+		}
+
+		.arrowLeft {
+			border-top-width: 5px;
+			border-bottom-width: 5px;
+			border-right-width: 6px;
+		}
+	}
+}
+
+// Slides Container
+.slideContainer {
+	grid-row: 2;
+	position: relative;
+	width: 100%;
+	max-width: 80rem;
+	margin: 0 auto;
+	display: grid;
+}
+
+.slide {
+	grid-column: 1;
+	grid-row: 1;
+	display: flex;
+	flex-direction: column;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+
+	&.activeSlide {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.slide__heading {
+	font-family: "LionandHareLight", sans-serif;
+	font-size: clamp(4rem, 10vw, 8rem);
+	line-height: 1;
+	letter-spacing: 0.1rem;
+	margin-bottom: 1rem;
+}
+
+.slide__paragraph {
+	font-family: "Rajdhani-Medium", sans-serif;
+	font-size: clamp(1rem, 1.5vw, 1.6rem);
+	line-height: 1.5;
+	margin-bottom: 2rem;
+	max-width: 60ch;
+}
+
+.slide__link {
+	align-self: flex-start;
+	padding: 1rem 2rem;
+	border: 2px solid #fff;
+	border-left: 15px solid #fff;
+
+	font-family: "Rajdhani-Medium", sans-serif;
+	text-transform: uppercase;
+	font-size: 1.4rem;
+	letter-spacing: 0.1rem;
+
+	cursor: pointer;
+	transition: all 0.2s ease;
+
+	&:hover {
+		border-right: 15px solid #fff;
+		border-left: 2px solid #fff;
+	}
+
+	@include respond(phone) {
+		padding: 0.75rem 1.5rem;
+		font-size: 1.2rem;
+	}
+}
+
+// Controls
+.slider__controls {
+	grid-row: 3;
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+	margin-top: 3rem;
+
+	@include respond(tablet) {
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1rem;
+	}
+}
+
+.slider__arrows {
+	display: flex;
+	gap: 1rem;
+}
+
+.previousBtn,
+.nextBtn {
+	background: transparent;
+	border: 1px solid #fff;
+	border-radius: 2.5px;
+	color: white;
+	cursor: pointer;
+	transition: all 0.2s ease;
+
+	&:hover {
+		background: white;
+
+		.text {
+			color: black;
+			font-family: "Rajdhani-Bold", sans-serif;
+		}
+
+		.arrowLeft,
+		.arrowRight {
+			border-color: black;
+		}
+	}
+}
+
+.previousBtnContent,
+.nextBtnContent {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.75rem 1.5rem;
+
+	font-family: "Rajdhani-Medium", sans-serif;
+	font-size: 1.25rem;
+	letter-spacing: 0.1rem;
+
+	@include respond(phone) {
+		padding: 0.5rem 1rem;
+		font-size: 1rem;
+
+		.text {
+			display: none;
+		}
+	}
+}
+
+.arrowLeft {
+	width: 0;
+	height: 0;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	border-right: 8.5px solid white;
+}
+
+.arrowRight {
+	width: 0;
+	height: 0;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	border-left: 8.5px solid white;
+}
+
+// Bullets/Indicators
+.slider__bullets {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	max-width: 50rem;
+
+	@include respond(tablet) {
+		order: 3;
+		width: 100%;
+		margin-top: 1rem;
+	}
+}
+
+.bullet__wrapper {
+	flex: 1;
+	height: 3rem;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+
+	&.active .bullet {
+		opacity: 1;
+		height: 6px;
+		transform: translateY(-2px);
+	}
+
+	&:hover {
+		.slide__number {
+			opacity: 1;
+		}
+
+		.bullet {
+			height: 6px;
+			opacity: 1;
+			box-shadow: 0 6px 0 #fff;
+			transform: translateY(-9px);
+		}
+	}
+}
+
+.bullet__event_wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.slide__number {
+	position: absolute;
+	width: 100%;
+	bottom: 25px;
+	text-align: center;
+
+	font-family: "Rajdhani-Medium", sans-serif;
+	font-size: 3rem;
+	color: white;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+
+	@include respond(phone) {
+		font-size: 2rem;
+		bottom: 20px;
+	}
+}
+
+.bullet {
+	width: 100%;
+	height: 2px;
+	background-color: #fff;
+	opacity: 0.4;
+	transition: all 0.2s ease;
+}
+
+// Slide Index
+.slider__index_container {
+	font-family: "LionandHareLight", sans-serif;
+	font-size: clamp(4rem, 8vw, 8rem);
+	line-height: 1;
+	letter-spacing: 0.1rem;
+
+	@include respond(tablet) {
+		display: none;
+	}
+}
+
+// Animations
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.caseStudy>* {
+	animation: fadeIn 0.6s ease-out;
+}
+

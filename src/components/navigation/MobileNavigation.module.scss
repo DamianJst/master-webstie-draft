@@ -1,0 +1,141 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1rem;
+    pointer-events: none; // Allow clicks to pass through, we'll enable only on interactive elements
+
+    @media (min-width: 769px) {
+        display: none; // Hide on desktop, use desktop navigation instead
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logoContainer {
+    pointer-events: auto; // Enable clicks
+    cursor: pointer;
+    width: 6rem;
+    mix-blend-mode: difference;
+
+    @media (max-width: 480px) {
+        width: 5rem;
+    }
+}
+
+.logo {
+    width: 100%;
+    height: auto;
+    fill: white;
+}
+
+.menuIcon {
+    pointer-events: auto; // Enable clicks
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1010; // Above the menu
+    mix-blend-mode: difference;
+}
+
+.menuIconBarContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.topBar,
+.bottomBar {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    left: 0;
+}
+
+.topBar {
+    top: 35%;
+    transform-origin: center;
+}
+
+.bottomBar {
+    bottom: 35%;
+    transform-origin: center;
+}
+
+.mobileMenu {
+    pointer-events: auto; // Enable clicks
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.menuItems {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 300px;
+
+    li {
+        margin: 1.5rem 0;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.menuItem {
+    font-family: 'Suissnord', sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: white;
+    text-align: center;
+    padding: 0.75rem 0;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        transition: width 0.3s;
+    }
+
+    &:hover::after,
+    &.active::after {
+        width: 100%;
+    }
+
+    &.active {
+        color: #fff;
+    } }
