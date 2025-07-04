@@ -1,7 +1,7 @@
 // src/components/ContactForm.tsx
 import { useState } from 'react';
-import styles from '~/styles/contact.module.scss';
-import { validateField, validateForm } from '~/helpers/validate.js';
+import styles from '../styles/contact.module.scss';
+import { validateField, validateForm } from '../utils/validate';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({

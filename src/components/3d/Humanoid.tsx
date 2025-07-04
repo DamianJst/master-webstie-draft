@@ -7,7 +7,7 @@ import React, { useEffect } from 'react'
 import { useGraph } from '@react-three/fiber'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
-import { useControls } from 'leva'
+// import { useControls } from 'leva'
 
 export function Humanoid(props) {
   const group = React.useRef()
@@ -15,17 +15,18 @@ export function Humanoid(props) {
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
   const { actions } = useAnimations(animations, group)
-  const { animation } = useControls({
-    animation: {
-      value: "A_Flight_Idle_A_0_A_Flight_Idle_A_IN_PLACE_remap",
-      options: Object.keys(actions,)
-    }
-  })
+  // const { animation } = useControls({
+  //   animation: {
+  //     value: "A_Flight_Idle_A_0_A_Flight_Idle_A_IN_PLACE_remap",
+  //     options: Object.keys(actions,)
+  //   }
+  // })
 
 useEffect(()=>{
-  console.log(actions[animation])
-  actions[animation].play();
-},[animation])
+  // console.log(actions["A_Flight_Idle_A_0_A_Flight_Idle_A_IN_PLACE_remap"])
+  // console.log(animation)
+  actions["A_Flight_Idle_A_0_A_Flight_Idle_A_IN_PLACE_remap"].play();
+},[actions])
 
   return (
     <group ref={group} {...props} dispose={null}>
