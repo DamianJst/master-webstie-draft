@@ -497,7 +497,7 @@ export const getCameraTargetAnimationConfig = (from, to) => {
 export const getAnimationConfigs = (from, to) => {
   const transition = getTransitionInfo(from, to);
   if (!transition) return null;
-  
+  // console.log(`Transition from ${from} to ${to}:`, transition);
   return {
     camera: transition.camera,
     cameraTarget: transition.cameraTarget,
